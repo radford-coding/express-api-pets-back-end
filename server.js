@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const logger = require('morgan');
+const cors = require('cors');
 
 const petRouter = require('./controllers/pets.js');
 
@@ -15,6 +16,7 @@ mongoose.connection.on('connected', () => {
 
 app.use(express.json());
 app.use(logger('dev'));
+app.use(cors({ origin: 'htpp://localhost:5173' }));
 
 app.use('/pets', petRouter);
 
