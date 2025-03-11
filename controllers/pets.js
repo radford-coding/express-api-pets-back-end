@@ -1,6 +1,7 @@
 const Pet = require('../models/pet.js');
 const express = require('express');
 const router = express.Router();
+const findByIdAndAdopt = (x) => Pet.findByIdAndDelete(x); // lol
 
 
 
@@ -63,19 +64,18 @@ router.put('/:petId', async (req, res) => {
             res.status(500).json({ err: error.message });
         };
     }
-
 });
 
 
 // DELETE /pets/:petId
 router.delete('/:petId', async (req, res) => {
     try {
-        const deletedPet = await Pet.findByIdAndDelete(req.params.petId);
-        if (!deletedPet) {
+        const adoptedPet = await findByIdAndAdopt(req.params.petId);
+        if (!adoptedPet) {
             res.status(404);
             throw new Error('Pet not found.');
         };
-        res.status(200).json({ action: 'delete', deletedPet });
+        res.status(200).json({ action: 'adoption', adoptedPet });
     } catch (error) {
         if (res.statusCode === 404) {
             res.json({ err: error.message });
