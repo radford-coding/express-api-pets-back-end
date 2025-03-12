@@ -3,10 +3,6 @@ const express = require('express');
 const router = express.Router();
 const findByIdAndAdopt = (x) => Pet.findByIdAndDelete(x); // lol
 
-
-
-
-
 // POST /pets
 router.post('/', async (req, res) => {
     try {
@@ -17,7 +13,6 @@ router.post('/', async (req, res) => {
     };
 });
 
-
 // GET /pets
 router.get('/', async (req, res) => {
     try {
@@ -27,7 +22,6 @@ router.get('/', async (req, res) => {
         res.status(500).json({ err: error.message });
     }
 });
-
 
 // GET /pets/:petId
 router.get('/:petId', async (req, res) => {
@@ -44,9 +38,8 @@ router.get('/:petId', async (req, res) => {
         } else {
             res.status(500).json({ err: error.message });
         };
-    }
+    };
 });
-
 
 // PUT /pets/:petId
 router.put('/:petId', async (req, res) => {
@@ -63,9 +56,8 @@ router.put('/:petId', async (req, res) => {
         } else {
             res.status(500).json({ err: error.message });
         };
-    }
+    };
 });
-
 
 // DELETE /pets/:petId
 router.delete('/:petId', async (req, res) => {
@@ -82,9 +74,7 @@ router.delete('/:petId', async (req, res) => {
         } else {
             res.status(500).json({ err: error.message });
         };
-    }
+    };
 });
-
-
 
 module.exports = router;

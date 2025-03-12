@@ -16,11 +16,9 @@ mongoose.connection.on('connected', () => {
 
 app.use(express.json());
 app.use(logger('dev'));
-app.use(cors({ origin: 'htpp://localhost:5173' }));
+app.use(cors({ origin: /http:\/\/localhost:\d+$/ }));
 
 app.use('/pets', petRouter);
-
-
 
 app.listen(3000, () => {
     console.log('The express app is ready!');
